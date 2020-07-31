@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    width: 33.33%;
+    padding: 5px;
+    
+  }
+  .column_rat {
+    width: 33.33%;
+    padding: 5px;
+    margin-left: 80px;
+  }
+  #images{
+    text-align:center;
+ }
+ 
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+  .colett{
+    float:left;
+    margin-left: auto;
+    margin-right: auto;
+  }
+ .footer{
+  display: flex;
+  flex: 1 1 auto;
+ }
+  #left{
+  float:left;
+  width:50%;
+  overflow:hidden;
+  flex: 1 1 auto;
+ 
+  }
+  #right{
+  float:left;
+  width:50%;
+  overflow:hidden;
+  flex: 1 1 auto;
+  } 
