@@ -1,10 +1,11 @@
 # Créez une plateforme pour amateurs de Nutella
-# Projet 8 du Parcours développeur d'application python d'OpenClassrooms
-# Cahier des charges
-## Fonctionnalités :
+# Project 8 of the Parcours développeur d'application python from OpenClassrooms
+# Specification
+## Features :
 
-## Versionnage :
-V0.1 Création page d'accueil
+## Versioning :
+V0.1 Creation of the home page
+V0.2 Adding sign in and sign up pages,starting with the authentification of the users
 
-## Auteur et Contribution :
-J'ai développé ce programme dans le cadre d'une formation sur Openclassrooms. Par conséquent toute pull request avec du code sera refusé. Ouvrez plutôt une issue pour signaler un bug, une faute d'orthographe ou pour simplement donner un conseil.
+## Author and Contribution :
+I built this program as part of an formation on OpenClassrooms. Therefore every *pull request* will be refused. Insted you can open an *issue* to signal a *bug*, a typographical error or just for give me an advice
