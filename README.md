@@ -6,6 +6,7 @@
 ## Versioning :
 V0.1 Creation of the home page
 V0.2 Adding sign in and sign up pages,starting with the authentification of the users
+V0.3 Create postgresl_db, connect to it with django
 
 ## Author and Contribution :
 I built this program as part of an formation on OpenClassrooms. Therefore every *pull request* will be refused. Insted you can open an *issue* to signal a *bug*, a typographical error or just for give me an advice
