@@ -20,7 +20,7 @@ from manage_user import views as manage_user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home_views.home_function),
-    path('connection',manage_user_views.signin_function),
+    path('', home_views.home_function),
+    path('login',manage_user_views.signin_function),
     path('signup',manage_user_views.signup_function)
 ]

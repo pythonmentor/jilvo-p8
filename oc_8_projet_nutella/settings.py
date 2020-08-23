@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'manage_user'
+    'manage_user',
+    'catalog'
 ]
 
 MIDDLEWARE = [
@@ -78,11 +79,10 @@ WSGI_APPLICATION = 'oc_8_projet_nutella.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'oc_8_nutella',
+        'NAME': 'oc8_nutella',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',
-        'PORT': '50779',
     }
 }
 
@@ -124,3 +124,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/'
