@@ -12,8 +12,8 @@ class Category(models.Model):
 class Product(models.Model):
     """Product class"""
     name = models.CharField(max_length=200, unique=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="product",null=False)
-    description = models.CharField(max_length=1000, null=False)
+    category = models.ManyToManyField(Category, related_name="product")
+    # description = models.CharField(max_length=1000, null=False)
     nutrition_grade = models.CharField(max_length=1, null=False)
     image = models.URLField(max_length=200, null=True)
     brand = models.CharField(max_length=200, null=False)
@@ -30,3 +30,6 @@ class Product(models.Model):
 class UserFavorite(models.Model):
     user_name = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    
+# class Profil(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)  # La liaison OneToOne vers le modèle User
