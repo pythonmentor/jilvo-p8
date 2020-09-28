@@ -22,5 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', catalog_views.home_function),
     path('login',manage_user_views.signin_function),
-    path('signup',manage_user_views.signup_function)
+    path('signup',manage_user_views.signup_function),
+    # path('search_result',catalog_views.searchresult),
+    path('search_result',catalog_views.searchresult, name='search_result'),
 ]

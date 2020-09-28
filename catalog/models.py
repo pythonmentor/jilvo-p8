@@ -13,6 +13,7 @@ class Product(models.Model):
     """Product class"""
     name = models.CharField(max_length=200, unique=True)
     category = models.ManyToManyField(Category, related_name="product")
+    # nutrition_image = models.URLField(null=True)
     # description = models.CharField(max_length=1000, null=False)
     nutrition_grade = models.CharField(max_length=1, null=False)
     image = models.URLField(max_length=200, null=True)

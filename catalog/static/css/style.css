@@ -5,12 +5,13 @@
 html,body{
 background-image: url('/static/assets/img/bg-masthead.jpg');
 background-size: cover;
-background-repeat: no-repeat;
+/* background-repeat: no-repeat; */
 height: 100%;
 font-family: 'Numans', sans-serif;
 }
 .signup{
 background-image: url('/static/assets/img/bg-masthead2.jpg');
+background-repeat: no-repeat;
 }
 .container{
 height: 100%;

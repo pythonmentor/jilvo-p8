@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<body id="page-top" class="signup"></body>
+<style>
+    html{
+      background-color: blue;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+<section class="bg_footer page-section " id="choice">
+    <div>
+      <h3> Choisissez le produit pour lequel vous voulez un substituant : </h3>
+      <div class="row">
+        {% for prod in product %}
+        {% if forloop.counter == 1 %}
+        <div class="col-xl-4 px-xl-5 col-lg-4 col-md-5 col-sm-6 col-xs-10 mx-auto text-center" class="product_result" style="text-align: center;">
+          <div class="item">
+            <span class="notify-badge">{{prod.nutrition_grade}}</span>
+            <img src={{prod.image}} class="pic_search_result">
+          </div>
+          <div class="carousel-caption mb-5 ">
+            <h5 class="custom-color ">{{prod.name}}</h5>
+          </div>
+        </div>
+          {% endif %}
+          {% endfor %}
+      </div>
+    </div>
+</section>
+<section>
+
+</section>
+<!-- <section class="page-section" id="tables">
+    <table>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>nutrition_grade</th>
+      <th>image</th>
+      <th>brand</th>
+      <th>calories</th>
+      <th>lipids</th>
+      <th>sugars</th>
+      <th>proteins</th>
+      <th>salts</th>
+      <th>url</th>
+    </tr>
+    {% for prod in product %}
+    <tr>
+
+        <td>{{prod.name}}</td>
+        
+        <td>
+          {%for cat in prod.category.all %}
+          {{cat}}
+          {% endfor%}</td>
+        <td>{{prod.nutrition_grade}}</td>
+        <td>{{prod.image}}</td>
+        <td>{{prod.brand}}</td>
+        <td>{{prod.calories}}</td>
+        <td>{{prod.lipids}}</td>
+        <td>{{prod.sugars}}</td>
+        <td>{{prod.proteins}}</td>
+        <td>{{prod.salts}}</td>
+        <td>{{prod.url}}</td>
+
+    </tr>
+    {% endfor %}
+  </table>
+
+</section> -->
+{% endblock %}

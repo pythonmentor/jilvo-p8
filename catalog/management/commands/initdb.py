@@ -6,8 +6,8 @@ from catalog.models import Category,Product
 
 class Command(BaseCommand):
     help = 'Initializes the database'
-    # CATEGORIES = ['yaourts-au-caramel']
-    CATEGORIES = ['Viandes', 'Poissons', 'Epicerie', 'Chocolats', 'Pates-a-tartiner', 'Biscuits',  'Vins', 'Boissons-gazeuses', 'Yaourts', 'Pains', 'Glace', 'Fromages-de-france', 'Pizzas', 'Snacks sucrés']
+    CATEGORIES = ['yaourts-au-caramel']
+    # CATEGORIES = ['Viandes', 'Poissons', 'Epicerie', 'Chocolats', 'Pates-a-tartiner', 'Biscuits',  'Vins', 'Boissons-gazeuses', 'Yaourts', 'Pains', 'Glace', 'Fromages-de-france', 'Pizzas', 'Snacks sucrés']
 
     def create_db(self):
 
@@ -34,6 +34,7 @@ class Command(BaseCommand):
             for product in products:
                 try:
                     name = product['product_name']
+                    category_name = new_category
                     nutrition_grade = product['nutrition_grades']
                     url = product['url']
                     brand = product['brands']
@@ -49,14 +50,16 @@ class Command(BaseCommand):
                         sugar = nutriments["sugars"]
                         proteins = nutriments["proteins_value"]
                         salts = nutriments["salt"]
+                        print("produit ajouté")
                         # b+=1
                         # pass
 
-                    # d1 = Product.objects.create(name=name, nutrition_grade=nutrition_grade,image=picture,brand=brand,url=url)
-                    d1 = Product.objects.create(name=name, nutrition_grade=nutrition_grade,image=picture,brand=brand,calories=calories,
+                    # create_obj = Product.objects.create(name=name, nutrition_grade=nutrition_grade,image=picture,brand=brand,url=url)
+                    create_obj = Product.objects.create(name=name,nutrition_grade=nutrition_grade,image=picture,brand=brand,calories=calories,
                     lipids=lipids,sugars=sugar,proteins=proteins,salts=salts,url=url)
-                    print(d1)
-                    d1.save()
+                    create_obj.category.add(category_name)
+                    print(create_obj)
+                    create_obj.save()
 
                 except Exception as e :
                     print(e)

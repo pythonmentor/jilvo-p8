@@ -33,29 +33,34 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Faire une recherche" aria-label="Search">
+                        <form class="form-inline" action="{% url 'search_result' %}" method="GET" accept-charset="utf-8">
+                            <input class="form-control mr-sm-2" placeholder="Faire une recherche" id="query" >
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                         <a class="navbar-brand" href="login">
-                            <img src="{% static 'assets/img/login.png' %}" width="30" height="30" alt="login" loading="lazy">
+                            <img src="{% static 'assets/img/login.png' %}" width="30" height="30" alt="login" loading="lazy" style="
+                            filter: invert(100%);">
                         </a>
-                        <a class="navbar-brand" href="#">
+                        <!-- {% if user.is_authenticated %} -->
+                        <!-- <a class="navbar-brand" href="#">
                             <img src="{% static 'assets/img/carrot.png' %}" width="30" height="30" alt="carrot" loading="lazy">
                         </a>
                         <a class="navbar-brand" href="#">
                             <img src="{% static 'assets/img/logout.png' %}" width="30" height="30" alt="logout" loading="lazy">
-                        </a>
+                        </a> -->
+                        <!-- {% else %} -->
+                        <!-- {% endif %} -->
                     </ul>
                 </div>
             </div>
         </nav>
         {% block content %} {% endblock %}
-        <!-- Footer-->
-        <footer class="bg-light py-5">
-            <div><div id="left" class="small text-center text-muted">Mentions legales</div></div>
-            <div><div id="right" class="small text-center text-muted">Contact</div></div>
-        </footer>
+<section class="page-section" id="about"></section>
+    <footer class="bg-light py-5">
+        <div><div id="left" class="small text-center text-muted">Mentions legales</div></div>
+        <div><div id="right" class="small text-center text-muted">Contact</div></div>
+    </footer>
+</section>
         <!-- Bootstrap core JS-->
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script> -->
