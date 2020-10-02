@@ -13,10 +13,10 @@ def home_function(request):
 def searchresult(request):
     query = request.GET.get('query','')
     print(query)
-    # if not query:
-    #     product = Product.objects.all
-    # else:
-    product = Product.objects.filter(name__contains=query)[:6]
+    if not query:
+        product = Product.objects.all()[0:10]
+    else:
+        product = Product.objects.filter(name__contains=query)[:6]
     name = "Résultats pour la requête %s"%query
     # title = 'Votre recherche est :  "{}"'. format(query)
     # context = {

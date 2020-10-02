@@ -65,13 +65,14 @@
   .pic_search_result{
     border-radius: 10%;
     border-width: thick;
+    width: 10em;
   }
   .name_result{
     margin-top: 10px;
   }
   .notify-badge {
     position: absolute;
-    right: -2px;
+    right: -170px;
     top: 10px;
     text-align: center;
     border-radius: 20px 20px 20px 20px;

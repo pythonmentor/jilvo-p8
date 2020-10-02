@@ -25,5 +25,5 @@ urlpatterns = [
     path('signup',manage_user_views.signup_function),
     # path('search_result',catalog_views.searchresult),
     path('search_result',catalog_views.searchresult, name='search_result'),
-    path('choosen_product',catalog_views.choosen_product, name='choice_product_button')
+    path('choosen_product',catalog_views.choosen_product, name='choice_product_input')
 ]
