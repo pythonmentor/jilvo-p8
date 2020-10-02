@@ -11,11 +11,12 @@ def home_function(request):
     return render(request,"index.html")
 
 def searchresult(request):
-    query = request.GET.get('query')
-    if not query:
-        product = Product.objects.all
-    else:
-        product = Product.objects.filter(name__contains=query)
+    query = request.GET.get('query','')
+    print(query)
+    # if not query:
+    #     product = Product.objects.all
+    # else:
+    product = Product.objects.filter(name__contains=query)[:6]
     name = "Résultats pour la requête %s"%query
     # title = 'Votre recherche est :  "{}"'. format(query)
     # context = {
@@ -27,3 +28,11 @@ def searchresult(request):
     print(product)
     # return render(request,"search_result.html",context)
     return render(request,"search_result.html",{'product': product})
+
+def choosen_product(request):
+    query = request.GET.get('choice_product_button','')
+    print(query)
+    product = Product.objects.filter(name=query)
+    print(product)
+    return render(request,"choosen_product.html",{'product': product})
+    

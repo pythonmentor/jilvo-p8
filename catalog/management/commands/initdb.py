@@ -6,8 +6,8 @@ from catalog.models import Category,Product
 
 class Command(BaseCommand):
     help = 'Initializes the database'
-    CATEGORIES = ['yaourts-au-caramel']
-    # CATEGORIES = ['Viandes', 'Poissons', 'Epicerie', 'Chocolats', 'Pates-a-tartiner', 'Biscuits',  'Vins', 'Boissons-gazeuses', 'Yaourts', 'Pains', 'Glace', 'Fromages-de-france', 'Pizzas', 'Snacks sucrés']
+    # CATEGORIES = ['yaourts-au-caramel']
+    CATEGORIES = ['Viandes', 'Poissons', 'Epicerie', 'Chocolats', 'Pates-a-tartiner', 'Biscuits',  'Vins', 'Boissons-gazeuses', 'Yaourts', 'Pains', 'Glace', 'Fromages-de-france', 'Pizzas', 'Snacks sucrés']
 
     def create_db(self):
 
