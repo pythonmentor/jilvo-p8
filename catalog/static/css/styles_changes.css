@@ -1,7 +1,12 @@
 * {
     box-sizing: border-box;
   }
-  
+  .nav_color{
+    background-color:#C45525  ;
+  }
+  .bg_opacity{
+    background: transparent;
+  }
   .column {
     width: 33.33%;
     padding: 5px;
@@ -65,10 +70,14 @@
   .pic_search_result{
     border-radius: 10%;
     border-width: thick;
-    width: 10em;
+    width: 150px;
+    
   }
   .name_result{
     margin-top: 10px;
+  }
+  .margin_bot{
+    margin-bottom: 20px;
   }
   .notify-badge {
     position: absolute;
@@ -117,3 +126,17 @@
   .bg-footer {
     background-color: #de9440;
 }
+
+  .button_go_to_off{
+    margin-top: 1em;
+  }
+  .center_text{
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .button_chooseproduct{
+    margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 300px;
+  }

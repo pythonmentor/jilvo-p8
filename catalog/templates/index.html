@@ -12,8 +12,11 @@
             </div>
             <div class="col-lg-8 align-self-baseline">
                 <p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ce que vous consommez tous les jours. </p>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Faire une recherche">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <form action="{% url 'search_result' %}" method="GET" accept-charset="utf-8">
+                    <!-- <input class="form-control mr-sm-2" placeholder="Faire une recherche" name="query" id="query"> -->
+                    <input class="form-control" name="query" id="query" placeholder="Faire une recherche">
+                    <button class="btn btn-primary button_go_to_off" type="submit"> Valider </button>
+                </form>
             </div>
         </div>
     </div>

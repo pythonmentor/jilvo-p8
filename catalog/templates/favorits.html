@@ -15,6 +15,9 @@
           <span class="notify-badge">{{product.nutrition_grade}}</span>
           <img src={{product.image}} class="pic_search_result">
         </div>
+        <div class="carousel-caption mb-5 ">
+          <h5 class="custom-color ">{{product.name}}</h5>
+        </div>
         <div>
           <table>
             <tr>
@@ -66,11 +69,8 @@
         <div class="carousel-caption mb-5 ">
           <h5 class="custom-color ">{{product.name}}</h5>
         </div>
-        <form class="form-inline" action="{% url 'add_favorits' %}" method="POST" accept-charset="utf-8">
-          {% csrf_token %}
-          <div class="form-group">
-            <input type="submit" class="btn btn-success" value="Ajouter ce produit à mes favoris" name="potentially_substitute_product">
-          </div>
+        <form class="form-inline" action="/" method="GET" accept-charset="utf-8">
+          <input type="submit" class="btn btn-success" value="Choisir ce produit" name="choice_product_input">
         </form>
       </div>
         {% endfor %}
