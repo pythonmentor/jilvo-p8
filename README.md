@@ -16,6 +16,8 @@ V0.5 End of the script for adding products in the DB, create a "base.html" so i 
 
 V0.6 Create a result page for the product we are looking for
 
+V0.7 Set up the register view
+
 
 ## Author and Contribution :
 I built this program as part of an formation on OpenClassrooms. Therefore every *pull request* will be refused. Insted you can open an *issue* to signal a *bug*, a typographical error or just for give me an advice

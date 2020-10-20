@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import logout,login,authenticate
-from .forms import ConnexionForm, UserRegisterForm
+from .forms import AuthentificationForm, UserRegisterForm
 
 
 # Create your views here.
@@ -41,13 +41,15 @@ def register(request):
         return render(request, 'index.html')
 
 def connexion(request):
-    error_log = []
-    user_page = 'index'
     print(request.user.is_authenticated)
     if request.user.is_authenticated:
-        return redirect(user_page)
+        print("déja connecté")
+        return redirect('index.html')   
+    # if request.method == "GET":
+    #     print("Voir la page sans se connecter")
+    #     return render(request, 'login.html')
     if request.method == "POST":
-        form = ConnexionForm(request.POST)
+        form = AuthentificationForm(request.POST)
         print(form.is_valid())
         if form.is_valid():
             username = request.POST["username"]
@@ -61,12 +63,10 @@ def connexion(request):
                 # return redirect(user_page)
                 print("Connecté")
             else: # sinon une erreur sera affichée
-                error_log = {
-                    "error_loggin_in" : "Utilisateur inconnu ou mauvais de mot de passe."
-                }
+                
                 print("Utilisateur inconnu ou mauvais de mot de passe.")
     else:
-        form = ConnexionForm()
+        form = AuthentificationForm()
         print("Rien ne se passe aucune connexion effectué")
 
     return render(request, 'login.html', {'form': form})
