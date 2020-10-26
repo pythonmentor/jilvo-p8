@@ -2,4 +2,5 @@
 db.sqlite3
 __pycache__
 .git
-.vscode/
+/.vscode/
+/.pytest_cache

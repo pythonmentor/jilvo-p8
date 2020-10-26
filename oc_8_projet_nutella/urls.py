@@ -27,5 +27,6 @@ urlpatterns = [
     # path('search_result',catalog_views.searchresult),
     path('search_result',catalog_views.searchresult, name='search_result'),
     path('choosen_product',catalog_views.choosen_product, name='choosen_product'),
-    path('favorits',catalog_views.add_favorite, name='add_favorits')
+    path('addfavorits',catalog_views.add_favorite, name='add_favorits'),
+    path('favorits',catalog_views.see_favorits, name="see_favorits")
 ]

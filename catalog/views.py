@@ -17,26 +17,40 @@ def home_function(request):
     return render(request,"index.html")
 
 def searchresult(request):
-    """search the product, if we find product with a name who contains the string of the query we disp 6 product if not we disp 10 product of the base """
+    """search the product, if we find product with a name who 
+    contains the string of the query we disp 6 product 
+    if not we disp 10 product of the base """
     query = request.GET.get('query','')
     print(query)
+
     if not query:
+        title = "Aucun champ rempli, affichage des 10 premiers produits"
         product = Product.objects.all()[0:10]
+        context = {
+            'product' : product,
+            'title': title
+        }
     else:
         product = Product.objects.filter(name__contains=query)[:6]
         # cat = Category.product.all()
-    name = "Résultats pour la requête %s"%query
-    # title = 'Votre recherche est :  "{}"'. format(query)
-    # context = {
-    #     'name': name
-    #     # 'data': data
-    #     }
-    # product = Product.objects.filter(name__contains=query)
-    # product = Product.objects.all()[5]
+
+        if not product:
+            title = "Votre recherche n'a donné aucun résultat, affichage des 10 premiers produits"
+            product = Product.objects.all()[0:10]
+            context ={
+                'title': title,
+                'product': product
+            }
+        else:
+            title = "Votre recherche est : "
+            context = {
+                'title': title,
+                'product': product
+            }
     print(product)
     # print(cat)
     # return render(request,"search_result.html",context)
-    return render(request,"search_result.html",{'product': product})
+    return render(request,"search_result.html",context)
 
 def choosen_product(request):
     """ display the detail page for the product """
@@ -50,7 +64,8 @@ def choosen_product(request):
         print(cat)
         lst_cat.append(cat)
     # cat = Category.objects.get(name=product.cat)
-    sub_product = Product.objects.filter(category=lst_cat[0])[:6]
+    sub_product = Product.objects.filter(category=lst_cat[0]).order_by("nutrition_grade")[:6]
+    print(type(sub_product))
     list_cat_order=[]
     # for prod in Product.objects.order_by("")
     
@@ -69,33 +84,43 @@ def choosen_product(request):
 @login_required
 def add_favorite(request):
     """Add the product selected in the list of favorite of the user"""
-    print("La fonction est appelé")
-    query = request.GET.get('potentially_substitute_product','')
+    print("La fonction pour ajouté un produit est appelé")
+    query = request.GET.get('_substitute_product','')
     query_favorite = query
-    http_result_message = ""
+    print(query_favorite)
+    print("ID DU PRODUIT")
+    username = request.user.id
+    user = User.objects.get(id=username)
+    print(user)
+    print("ID DE L'USER")
     if query_favorite is not None:
         try: 
-            UserFavorite.objects.get(user_name=request.User.id , product=int(query_favorite))
-            http_result_message = "Ce produit est déjà dans vos favoris."
+            UserFavorite.objects.get(user_name=user, product=query_favorite)
             print("Ce produit est déjà dans vos favoris.")
         except ObjectDoesNotExist:
-            new_favorite = UserFavorite.objects.create(user_name=User.id,product=int(query_favorite))
+            new_favorite = UserFavorite.objects.create(user_name=username,product=query_favorite)
             new_favorite.save()
-            http_result_message = "Le produit a bien été enregistré."
             print("Le produit a bien été enregistré.")
     else:
         pass
     return HttpResponse(http_result_message)
     return redirect('index')
     # return render(request,'index.html')
-
 @login_required
 def see_favorits(request):
-    # favorits = UserFavorite.objects.get(user_name=user_name)
+    """See the favorits of the User"""
+    user_name = request.user
+    print(user_name)
+    # if request.user.is_authenticated():
+    #     product = UserFavorite.objects.get(user_name=user_name)
+    # else:
+    #     return render(request,"favorits.html")
     # context = {
-    #     # 'favorits': favorits
+    #     'product' : product
     # }
-    # print(favorits)
-    return render(request,"favorits.html")
+    product = UserFavorite.objects.filter(user_name=user_name)
+
+    
+    return render(request,"favorits.html",{'product': product})
 
 

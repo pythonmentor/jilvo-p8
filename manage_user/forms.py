@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 
-class AuthentificationForm(AuthenticationForm):
+class ConnexionForm(AuthenticationForm):
     """ Form to log an User model, this form is passed to the login view"""
     username = forms.CharField(
         label= "username",

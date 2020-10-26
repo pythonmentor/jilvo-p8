@@ -4,73 +4,28 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 <body id="page-top" class="bg_opacity"></body>
-
+<style>
+  footer{
+    position: fixed;
+  }
+</style>
 <section class="bg_footer page-section" ></section>
-<section class="bg_footer page-section product " id="choice">
-  <div>
-    <h3 class="center_text"> Le produit que vous avez choisit est : {{product.name}}</h3>
-    <div class="row">
-      <div class="col-xl-4 px-xl-5 col-lg-4 col-md-5 col-sm-6 col-xs-10 mx-auto text-center" class="product_result" style="text-align: center;">
-        <div class="item" style="width: 10px;">
-          <span class="notify-badge">{{product.nutrition_grade}}</span>
-          <img src={{product.image}} class="pic_search_result">
-        </div>
-        <div class="carousel-caption mb-5 ">
-          <h5 class="custom-color ">{{product.name}}</h5>
-        </div>
-        <div>
-          <table>
-            <tr>
-                <th>Informations nutritionnelles</th>
-                <th>Pour 100g/100ml</th>
-            </tr>
-            <tr>
-                <th>Énergie (kJ)</th>
-                <td>{{product.calories}}</td>
-            </tr>
-            <tr>
-              <th>Matières grasses / Lipides</th>
-              <td>{{product.lipids}}</td>
-            </tr>
-            <tr>
-              <th>Glucides</th>
-              <td>{{product.sugars}}</td>
-            </tr>
-            <tr>
-              <th>Protéines</th>
-              <td>{{product.proteins}}</td>
-            </tr>
-            <tr>
-              <th>Sel</th>
-              <td>{{product.salts}}</td>
-            </tr>
-            <tr>
-              <th>Nutriscore</th>
-              <td style="text-transform: uppercase">{{product.nutrition_grade}}</td>
-            </tr>
-            </table>
-        </div>
-        <a href={{product.url}} class="btn btn-primary btn-lg active button_go_to_off" role="button" aria-pressed="true">Aller sur la page OpenFoodFact</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="bg_footer page-section product " id="choice">
   <div>
-    <h3 class="center_text"> Voulez vous un subtituant ? </h3>
+    <h3 class="center_text"> Voici la liste des produit que vous avez ajoutés en favoris : </h3>
     <div class="row">
-      {% for product in sub_product %}
+      {% for prod in product %}
       <div class="col-xl-4 px-xl-5 col-lg-4 col-md-5 col-sm-6 col-xs-10 mx-auto text-center" class="product_result" style="text-align: center;">
         <div class="item" style="width: 10px;">
-          <span class="notify-badge">{{product.nutrition_grade}}</span>
-          <img src={{product.image}} class="pic_search_result">
+          <span class="notify-badge">{{prod.nutrition_grade}}</span>
+          <img src={{prod.image}} class="pic_search_result">
         </div>
         <div class="carousel-caption mb-5 ">
-          <h5 class="custom-color ">{{product.name}}</h5>
+          <h5 class="custom-color ">{{prod.name}}</h5>
         </div>
         <form class="form-inline" action="/" method="GET" accept-charset="utf-8">
-          <input type="submit" class="btn btn-success" value="Choisir ce produit" name="choice_product_input">
+          <input type="submit" class="btn btn-success" value="Supprimer" name="delete_prod">
         </form>
       </div>
         {% endfor %}
