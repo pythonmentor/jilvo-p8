@@ -18,6 +18,8 @@ V0.6 Create a result page for the product we are looking for
 
 V0.7 Set up the register view
 
+V0.8 Starting tests, Set up the connection and the register for the user, order the substitute 
+
 
 ## Author and Contribution :
 I built this program as part of an formation on OpenClassrooms. Therefore every *pull request* will be refused. Insted you can open an *issue* to signal a *bug*, a typographical error or just for give me an advice

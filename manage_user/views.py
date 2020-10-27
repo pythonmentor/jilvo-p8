@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import logout,login,authenticate
-from .forms import ConnexionForm, UserRegisterForm
+from django.contrib.auth.hashers import check_password
+from .forms import ConnexionForm, RegistrationForm
 
 
 # Create your views here.
@@ -18,29 +19,31 @@ def signup_function(request):
 def register(request):
     if request.method == 'GET':
         return render(request, 'signup.html')
-    print(request.POST["password"])
+    # print(request.POST["password"])
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-    print(form.is_valid())
-    if form.is_valid():
-        username = form.cleaned_data["username"]
-        password = form.cleaned_data["password"]
-        email = form.cleaned_data["email"]
-        print(password)
-        try:   
-            user = User.objects.create_user(username,password,email)
-            user.save()
-            print(user)
-            login(request, user)  # nous connectons l'utilisateur
-            messages.success(request, 'Votre compte a bien été crée')
-            print("Votre compte a bien été crée")
-        except Exception as e:
-            form = UserRegisterForm()
-            print(e)
-            # messages.error("request, 'Votre compte n‘a pas été crée.'")
-        return render(request, 'index.html')
-    else:
-        return render(request, 'index.html')
+        form = RegistrationForm(request.POST)
+    # print(form.is_valid())
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            email = form.cleaned_data["email"]
+            try:
+                user = form.save(commit=False)
+                user.set_password(request.POST["password"])
+                # user = User.objects.create_user(username,password,email)
+                user.save()
+                print(user.check_password(password))
+                # print(user)
+                login(request, user)  # nous connectons l'utilisateur
+                messages.success(request, 'Votre compte a bien été crée')
+                print("Votre compte a bien été crée")
+            except Exception as e:
+                form = RegistrationForm()
+                print(e)
+                # messages.error("request, 'Votre compte n‘a pas été crée.'")
+            return render(request, 'index.html')
+        else:
+            return render(request, 'index.html')
 
 def connexion(request):
     print(request.user.is_authenticated)
@@ -58,6 +61,8 @@ def connexion(request):
         print(password)
         user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
         print(user)
+        print(user.check_password(password))
+
         if user is not None:  # Si l'objet renvoyé n'est pas None
             login(request, user)  # nous connectons l'utilisateur
             # return redirect(user_page)

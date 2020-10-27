@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'oc_8_projet_nutella.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'oc8_nutella',
+        'NAME': 'oc8_nutella_purbeurre',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',
