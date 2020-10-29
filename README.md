@@ -2,7 +2,12 @@
 # Project 8 of the Parcours développeur d'application python from OpenClassrooms
 # Specification
 ## Features :
+## What remain to be done ?
+- Do the TDD
 
+- Push on Heroku
+
+- Set up environment variable
 ## Versioning :
 V0.1 Creation of the home page
 
@@ -19,6 +24,8 @@ V0.6 Create a result page for the product we are looking for
 V0.7 Set up the register view
 
 V0.8 Starting tests, Set up the connection and the register for the user, order the substitute 
+
+V0.9 Create the function in order to add favorits,build the favorit's page, so we can see the favorits
 
 
 ## Author and Contribution :

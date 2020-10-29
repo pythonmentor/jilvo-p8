@@ -13,7 +13,7 @@
 
 <section class="bg_footer page-section product " id="choice">
   <div>
-    <h3 class="center_text"> Voici la liste des produit que vous avez ajoutés en favoris : </h3>
+    <h3 class="center_text"> Voici la liste des produit que vous,({{user_name}}) avez ajoutés en favoris : </h3>
     <div class="row">
       {% for prod in product %}
       <div class="col-xl-4 px-xl-5 col-lg-4 col-md-5 col-sm-6 col-xs-10 mx-auto text-center" class="product_result" style="text-align: center;">
@@ -24,8 +24,10 @@
         <div class="carousel-caption mb-5 ">
           <h5 class="custom-color ">{{prod.name}}</h5>
         </div>
-        <form class="form-inline" action="/" method="GET" accept-charset="utf-8">
-          <input type="submit" class="btn btn-success" value="Supprimer" name="delete_prod">
+        <form class="form-inline" action="{% url 'delete_fav' %}" method="POST" accept-charset="utf-8">
+          {% csrf_token %}
+          <input type="hidden" value="{{prod.id}}" name='delete_prod'>
+          <input type="submit" class="btn btn-success" value="Supprimer">
         </form>
       </div>
         {% endfor %}

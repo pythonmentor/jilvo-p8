@@ -73,7 +73,7 @@
         <form class="form-inline" action="{% url 'add_favorits' %}" method="GET" accept-charset="utf-8">
           {% csrf_token %}
           <div class="form-group">
-            <input type="hidden" value="{{product.id}}" name='_substitute_product'>
+            <input type="hidden" value="{{product.name}}" name='_substitute_product'>
             <input type="submit" class="btn btn-success" value="Ajouter ce produit à mes favoris" >
           </div>
         </form>

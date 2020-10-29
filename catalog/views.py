@@ -86,24 +86,26 @@ def add_favorite(request):
     """Add the product selected in the list of favorite of the user"""
     print("La fonction pour ajouté un produit est appelé")
     query = request.GET.get('_substitute_product','')
-    query_favorite = query
-    print(query_favorite)
+    print(query)
+    # query_favorite = query.id
+    query_name = Product.objects.get(name=query)
+    print(query_name)
     print("ID DU PRODUIT")
-    username = request.user.id
-    user = User.objects.get(id=username)
-    print(user)
+    username = request.user
+    user_id = request.user.id
+    # user = User.objects.get(id=username)
+    print(username)
     print("ID DE L'USER")
-    if query_favorite is not None:
+    if query_name is not None:
         try: 
-            UserFavorite.objects.get(user_name=user, product=query_favorite)
+            UserFavorite.objects.get(user_name=username, product=query_name)
             print("Ce produit est déjà dans vos favoris.")
         except ObjectDoesNotExist:
-            new_favorite = UserFavorite.objects.create(user_name=username,product=query_favorite)
+            new_favorite = UserFavorite.objects.create(user_name=username,product=query_name)
             new_favorite.save()
             print("Le produit a bien été enregistré.")
     else:
         pass
-    return HttpResponse(http_result_message)
     return redirect('index')
     # return render(request,'index.html')
 @login_required
@@ -111,6 +113,15 @@ def see_favorits(request):
     """See the favorits of the User"""
     user_name = request.user
     print(user_name)
+    # product = UserFavorite.objects.filter(user_name=user_name)
+    list_favorits = UserFavorite.objects.all().filter(user_name=user_name)
+    favorits_query = list_favorits
+    favorits_list = []
+    for favorite in favorits_query:
+        favorits_list.append(Product.objects.get(pk=favorite.product.id))
+    print(favorits_list)
+    # product_2 = Product.objects.filter(pk=product)
+    # print(product_2)
     # if request.user.is_authenticated():
     #     product = UserFavorite.objects.get(user_name=user_name)
     # else:
@@ -118,9 +129,25 @@ def see_favorits(request):
     # context = {
     #     'product' : product
     # }
-    product = UserFavorite.objects.filter(user_name=user_name)
+    context = {
+        # 'product' : product,
+        'user_name' : user_name,
+        'product' : favorits_list
+    }
 
-    
-    return render(request,"favorits.html",{'product': product})
 
+    return render(request,"favorits.html",context)
+
+@login_required
+def remove_favorits(request):
+    """remove one product from the favorits"""
+    product = request.POST.get("delete_prod")
+    user_name = request.user
+    if product is not None:
+        UserFavorite.objects.filter(user_name=user_name,product=product)
+    print(product)
+    context =  {
+        'product' : product
+    }
+    return render(request,"favorits.html",context)
 
