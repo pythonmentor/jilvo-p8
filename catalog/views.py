@@ -35,14 +35,14 @@ def searchresult(request):
         # cat = Category.product.all()
 
         if not product:
-            title = "Votre recherche n'a donné aucun résultat, affichage des 10 premiers produits"
+            title = "Votre recherche, " + query + ", n'a donné aucun résultat, affichage des 10 premiers produits"
             product = Product.objects.all()[0:10]
             context ={
                 'title': title,
                 'product': product
             }
         else:
-            title = "Votre recherche est : "
+            title = str("Votre recherche est :" + " " + query)
             context = {
                 'title': title,
                 'product': product
@@ -141,11 +141,15 @@ def see_favorits(request):
 @login_required
 def remove_favorits(request):
     """remove one product from the favorits"""
-    product = request.POST.get("delete_prod")
-    user_name = request.user
-    if product is not None:
-        UserFavorite.objects.filter(user_name=user_name,product=product)
+    product = request.GET.get("delete_prod","")
     print(product)
+    user_name = request.user
+    print(user_name)
+    if product is not None:
+        del_prod = UserFavorite.objects.filter(user_name=user_name,product=product)
+    
+        # Category.objects.filter().delete(del_prod)
+        print(del_prod.id)
     context =  {
         'product' : product
     }

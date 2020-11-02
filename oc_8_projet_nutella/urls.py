@@ -20,6 +20,7 @@ from manage_user import views as manage_user_views
 
 urlpatterns = [
     path('administration/', admin.site.urls),
+    path('legal_mention',manage_user_views.legal_mention,name='legal_mention'),
     path('', catalog_views.home_function, name='index'),
     path('login',manage_user_views.connexion, name="login"),
     path('logout',manage_user_views.logout_view, name="logout"),

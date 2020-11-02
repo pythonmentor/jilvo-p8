@@ -6,14 +6,15 @@ from django.contrib.auth import logout,login,authenticate
 from django.contrib.auth.hashers import check_password
 from .forms import ConnexionForm, RegistrationForm
 
+def legal_mention(request):
+    return render(request,'legal_mention.html')
 
 # Create your views here.
 def signin_function(request):
-    """ Exemple de page non valide au niveau HTML pour que l'exemple soit concis """
     return render(request, 'login.html')
 
 def signup_function(request):
-    """ Exemple de page non valide au niveau HTML pour que l'exemple soit concis """
+   
     return render(request, 'signup.html')
 
 def register(request):

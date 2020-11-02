@@ -3,13 +3,8 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<body id="page-top" class="bg_opacity"></body>
-<style>
-  footer{
-    position: fixed;
-  }
-</style>
-<section class="bg_footer page-section" ></section>
+<body id="page-top" class="product bg_opacity"></body>
+
 <section class="bg_footer page-section product " id="choice">
   <div>
     <h3 class="center_text"> Le produit que vous avez choisit est : {{product.name}}</h3>
@@ -63,18 +58,16 @@
     <div class="row">
       {% for product in sub_product %}
       <div class="col-xl-4 px-xl-5 col-lg-4 col-md-5 col-sm-6 col-xs-10 mx-auto text-center" class="product_result" style="text-align: center;">
+        <h5 class="custom-color "name="product_name">{{product.name}}</h5>
         <div class="item" style="width: 10px;">
-          <span class="notify-badge">{{product.nutrition_grade}}</span>
-          <img src={{product.image}} class="pic_search_result">
-        </div>
-        <div class="carousel-caption mb-5 ">
-          <h5 class="custom-color ">{{product.name}}</h5>
+          <span class="notify-badge" name="nutrition_grade">{{product.nutrition_grade}}</span>
+          <img src={{product.image}} class="pic_search_result" name="image">
         </div>
         <form class="form-inline" action="{% url 'add_favorits' %}" method="GET" accept-charset="utf-8">
           {% csrf_token %}
           <div class="form-group">
             <input type="hidden" value="{{product.name}}" name='_substitute_product'>
-            <input type="submit" class="btn btn-success" value="Ajouter ce produit à mes favoris" >
+            <input type="submit" class="btn btn-success add_fav" value="Ajouter ce produit à mes favoris" >
           </div>
         </form>
       </div>
