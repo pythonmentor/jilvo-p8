@@ -76,11 +76,6 @@ def choosen_product(request):
     print(sub_product)
     return render(request,"choosen_product.html",context)
 
-# def substitute(request):
-#     """ print the list of 6 substitute for the User """
-#     product = Product.objects.filter(category='256')[:6]
-#     return render(request,"choosen_product.html",{'product': product})
-
 @login_required
 def add_favorite(request):
     """Add the product selected in the list of favorite of the user"""
@@ -106,7 +101,7 @@ def add_favorite(request):
             print("Le produit a bien été enregistré.")
     else:
         pass
-    return redirect('index')
+    return redirect('favorits')
     # return render(request,'index.html')
 @login_required
 def see_favorits(request):
@@ -120,15 +115,6 @@ def see_favorits(request):
     for favorite in favorits_query:
         favorits_list.append(Product.objects.get(pk=favorite.product.id))
     print(favorits_list)
-    # product_2 = Product.objects.filter(pk=product)
-    # print(product_2)
-    # if request.user.is_authenticated():
-    #     product = UserFavorite.objects.get(user_name=user_name)
-    # else:
-    #     return render(request,"favorits.html")
-    # context = {
-    #     'product' : product
-    # }
     context = {
         # 'product' : product,
         'user_name' : user_name,
