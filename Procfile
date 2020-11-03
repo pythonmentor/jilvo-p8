@@ -1,1 +1,1 @@
-web: gunicorn oc_8_projet_nutella.wsgi
+web: gunicorn oc_8_projet_nutella.wsgi —-log-file -
