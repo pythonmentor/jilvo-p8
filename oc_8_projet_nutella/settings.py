@@ -72,6 +72,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'oc_8_projet_nutella.wsgi.application'
 
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'static'),
+)
+ 
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -79,10 +86,11 @@ WSGI_APPLICATION = 'oc_8_projet_nutella.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'oc8_nutella_purbeurre',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'NAME': 'd4qc20f2l63cj5',
+        'USER': 'nzgxnhugzmlnmv',
+        'PORT': '5432',
+        'PASSWORD': 'bf5a3a020f63701dd647b1dc628b6c05ae09cb232f8b5f3b55c2bba1689',
+        'HOST': 'ec2-54-155-22-153.eu-west-1.compute.amazonaws.com',
     }
 }
 
@@ -127,6 +135,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
