@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
 import django_heroku
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -32,7 +32,7 @@ else:
     DEBUG = True
 
 
-ALLOWED_HOSTS = ['purbeurre-jilvo.herokuapp.com/']
+ALLOWED_HOSTS = ['.herokuapp.com/']
 
 
 # Application definition
@@ -50,7 +50,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -59,11 +58,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-if os.environ.get('ENV') == 'PRODUCTION':
-        # ...
-        # Simplified static file serving.
-        # https://warehouse.python.org/project/whitenoise/
-        STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
         
 
 ROOT_URLCONF = 'oc_8_projet_nutella.urls'
@@ -71,7 +65,7 @@ ROOT_URLCONF = 'oc_8_projet_nutella.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/Users/Julien/Documents/Git/Projet_8/OC_Platforme_Nutella'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,13 +79,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'oc_8_projet_nutella.wsgi.application'
-
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'static'),
-)
  
 
 # Database
@@ -108,20 +95,6 @@ DATABASES = {
         'HOST': 'localhost',
     }
 }
-if os.environ.get('ENV') == 'PRODUCTION':
-    # ...
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'b27d9bf5a3a020f63701dd647b1dc628b6c05ae09cb232f8b5f3b55c2bba1689',
-#         'USER': 'nzgxnhugzmlnmv',
-#         'PORT': '5432',
-#         'PASSWORD': 'bf5a3a020f63701dd647b1dc628b6c05ae09cb232f8b5f3b55c2bba1689',
-#         'HOST': 'ec2-54-155-22-153.eu-west-1.compute.amazonaws.com',
-#     }
-# }
 
 
 # Password validation
@@ -164,6 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'statifiles')
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATICFILES_DIRS=[(os.path.join(BASE_DIR,'static'))]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
