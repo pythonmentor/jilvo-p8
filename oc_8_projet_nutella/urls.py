@@ -17,9 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from catalog import views as catalog_views
 from manage_user import views as manage_user_views
-urlpatterns += patterns('',
- (r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-)
+
 urlpatterns = [
     path('administration/', admin.site.urls),
     path('legal_mention',manage_user_views.legal_mention,name='legal_mention'),
